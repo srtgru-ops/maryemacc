@@ -1836,6 +1836,258 @@
         font-size: 1.05rem !important;
       }
     }
+
+
+    /* صفحة الإنجازات المستقلة داخل ملف HTML واحد */
+    .achievements-page {
+      min-height: 100svh;
+      padding: 145px 0 88px !important;
+      background:
+        radial-gradient(circle at 10% 90%, rgba(166,126,57,.10), transparent 28%),
+        var(--brand-green) !important;
+      border-top: 0 !important;
+    }
+
+    .achievements-heading {
+      margin-bottom: 42px;
+      text-align: center;
+    }
+
+    .achievements-heading .founder-back {
+      display: flex;
+      margin-inline: auto;
+      margin-bottom: 28px;
+    }
+
+    .achievements-heading .section-title {
+      margin: 0;
+      color: var(--brand-gold) !important;
+      font-size: clamp(2.2rem, 4.2vw, 4.2rem);
+    }
+
+    .achievements-list {
+      width: min(100%, 1080px);
+      margin-inline: auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .achievement-item {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      align-items: start;
+      gap: 22px;
+      padding: 26px 28px;
+      border: 1px solid rgba(166,126,57,.28);
+      border-radius: 22px;
+      background: rgba(255,255,255,.045);
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .achievement-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(166,126,57,.65);
+      background: rgba(255,255,255,.07);
+    }
+
+    .achievement-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.11);
+      color: var(--brand-gold);
+    }
+
+    .achievement-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .achievement-content h2 {
+      margin: 0 0 9px;
+      color: #fff;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.5;
+    }
+
+    .achievement-content p {
+      margin: 0;
+      color: rgba(255,255,255,.76);
+      font-size: .96rem;
+      line-height: 1.95;
+    }
+
+    body.achievements-view .site-header {
+      background: rgba(23,58,34,.96);
+      box-shadow: 0 10px 28px rgba(0,0,0,.14);
+    }
+
+    @media (max-width: 760px) {
+      .achievements-page {
+        padding: 112px 0 56px !important;
+      }
+
+      .achievements-heading {
+        margin-bottom: 28px;
+      }
+
+      .achievement-item {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 14px;
+        padding: 20px 18px;
+        border-radius: 18px;
+      }
+
+      .achievement-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+      }
+
+      .achievement-icon svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .achievement-content h2 {
+        font-size: 1.05rem;
+      }
+
+      .achievement-content p {
+        font-size: .88rem;
+        line-height: 1.85;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .achievement-item {
+        grid-template-columns: 1fr;
+      }
+
+      .achievement-icon {
+        margin-inline-start: auto;
+      }
+    }
+
+
+    .achievements-intro {
+      width: min(100%, 760px);
+      margin: 18px auto 0;
+      color: rgba(255,255,255,.78);
+      font-size: 1rem;
+      line-height: 2;
+      text-align: center;
+    }
+
+    .achievements-list {
+      counter-reset: achievement;
+    }
+
+    .achievement-item {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 38px rgba(0,0,0,.12);
+      opacity: 0;
+      transform: translateY(24px) scale(.985);
+      transition: transform .55s ease, opacity .55s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+    }
+
+    .achievement-item::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, rgba(166,126,57,.95), rgba(166,126,57,.15));
+      opacity: .95;
+    }
+
+    .achievement-item::after {
+      counter-increment: achievement;
+      content: counter(achievement, decimal-leading-zero);
+      position: absolute;
+      inset-inline-end: 22px;
+      top: 18px;
+      color: rgba(255,255,255,.12);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .achievement-item.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .achievement-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(166,126,57,.72);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 24px 46px rgba(0,0,0,.18);
+    }
+
+    .achievement-icon {
+      animation: achievementFloat 3.6s ease-in-out infinite;
+    }
+
+    @keyframes achievementFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .achievement-content h2 {
+      padding-inline-end: 72px;
+    }
+
+    .achievement-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(166,126,57,.14);
+      border: 1px solid rgba(166,126,57,.22);
+      color: var(--brand-gold);
+      font-size: .78rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    @media (max-width: 760px) {
+      .achievements-intro {
+        font-size: .92rem;
+        line-height: 1.9;
+      }
+
+      .achievement-item::after {
+        inset-inline-end: 16px;
+        top: 16px;
+        font-size: 1.55rem;
+      }
+
+      .achievement-content h2 {
+        padding-inline-end: 54px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .achievement-content h2 {
+        padding-inline-end: 0;
+      }
+
+      .achievement-item::after {
+        top: 14px;
+        inset-inline-end: 14px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -1851,6 +2103,7 @@
         <a href="#services">الخدمات</a>
         <a href="#vision">الرؤية والرسالة</a>
         <a href="#founder-page">كلمة المؤسس</a>
+        <a href="#achievements-page">الإنجازات</a>
       </nav>
 
       <div class="nav-actions">
@@ -1869,6 +2122,7 @@
       <a href="#services">الخدمات</a>
       <a href="#vision">الرؤية والرسالة</a>
       <a href="#founder-page">كلمة المؤسس</a>
+        <a href="#achievements-page">الإنجازات</a>
       <a href="#booking">احجز خدمة</a>
     </nav>
   </header>
@@ -2193,6 +2447,76 @@
     </section>
 
 
+    <section class="section achievements-page" id="achievements-page" hidden aria-labelledby="achievements-page-title">
+      <div class="container achievements-heading">
+        <a class="founder-back" href="#home" aria-label="العودة إلى الصفحة الرئيسية">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          العودة إلى الرئيسية
+        </a>
+        <span class="section-kicker">إنجازات عملية موثوقة</span>
+        <h1 class="section-title" id="achievements-page-title">إنجازات مكتب مريم العنزي</h1>
+        <p class="achievements-intro">نماذج مختارة من أعمال المكتب، صيغت بأسلوب أوضح وأنيق، لتُبرز الأثر المهني والقيمة العملية التي يقدّمها المكتب لعملائه.</p>
+      </div>
+
+      <div class="container achievements-list">
+        <article class="achievement-item">
+          <div class="achievement-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="m9 12 2 2 4-4"/><path d="M12 2v3M12 19v3"/></svg>
+          </div>
+          <div class="achievement-content">
+            <span class="achievement-tag">إنجاز ضريبي</span>
+            <h2>استرداد مبالغ ضريبية نتيجة تصحيح نسبة الضريبة</h2>
+            <p>تمكن أخصائيو المكتب من اكتشاف تطبيق غير صحيح لنسبة ضريبة القيمة المضافة، حيث كانت المنشأة مستحقة لتطبيق نسبة 5% خلال الفترة الانتقالية بدلًا من 15%. وبعد إعداد المعالجة النظامية والرد على الهيئة، تم استرداد كامل الفروقات المالية المستحقة وإنهاء الإجراءات دون أي غرامات أو عقوبات.</p>
+          </div>
+        </article>
+
+        <article class="achievement-item">
+          <div class="achievement-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V8l8-4 8 4v12"/><path d="M8 12h8M8 16h8"/><path d="M10 20v-4h4v4"/></svg>
+          </div>
+          <div class="achievement-content">
+            <span class="achievement-tag">تحول نظامي</span>
+            <h2>إدارة التحول النظامي من مؤسسة إلى شركة</h2>
+            <p>نفذ المكتب عملية التحول القانوني والضريبي من مؤسسة فردية إلى شركة، متضمنة إقفال الرقم المميز وإصدار رقم مميز جديد، وإعداد خطة انتقال شاملة للفوترة والأنظمة والالتزامات الضريبية، بما ضمن استمرارية الأعمال دون أي توقف تشغيلي أو تأثير على سير العمل.</p>
+          </div>
+        </article>
+
+        <article class="achievement-item">
+          <div class="achievement-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6"/><path d="m9 16 2 2 4-4"/></svg>
+          </div>
+          <div class="achievement-content">
+            <span class="achievement-tag">امتثال ضريبي</span>
+            <h2>تصحيح الإقرارات الضريبية دون غرامات وعقوبات</h2>
+            <p>نجح المكتب في اكتشاف ومعالجة أخطاء بإقرارات ضريبة القيمة المضافة قبل ترتب آثارها النظامية، ومنها إدراج ضريبة مدخلات تخص فترات مستقبلية. وتم تصحيح الإقرارات وفق الأنظمة والتعليمات المعتمدة، مع تجنب الغرامات والعقوبات والمحافظة على الامتثال الضريبي للمنشأة.</p>
+          </div>
+        </article>
+
+        <article class="achievement-item">
+          <div class="achievement-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m14 4 6 6"/><path d="M3 21h8"/><path d="m5 16 9-9 3 3-9 9H5z"/></svg>
+          </div>
+          <div class="achievement-content">
+            <span class="achievement-tag">دعم فني وقانوني</span>
+            <h2>دعم القضايا المالية بالتقارير الفنية للجهات المعنية</h2>
+            <p>شارك المكتب في دعم إحدى القضايا المالية بالتعاون مع مكتب محاماة، من خلال مراجعة وتحليل السجلات والحسابات وإعداد تقرير مالي وفني احترافي مدعوم بالأدلة والمستندات، ساهم في دعم الملف المقدم أمام الجهة القضائية.</p>
+          </div>
+        </article>
+
+        <article class="achievement-item">
+          <div class="achievement-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19h16"/><path d="M6 16V8h12v8"/><path d="M9 8V5h6v3"/><path d="M9 12h6"/></svg>
+          </div>
+          <div class="achievement-content">
+            <span class="achievement-tag">تأهيل وتدريب</span>
+            <h2>تأهيل كوادر منشآت على التطبيق العملي لضريبة القيمة المضافة</h2>
+            <p>نفذ المكتب برنامجًا تدريبيًا متخصصًا لموظفي إحدى المنشآت، ركز على التطبيق العملي لضريبة القيمة المضافة، وإعداد ورفع الإقرارات الضريبية، واكتشاف ومعالجة الأخطاء الشائعة، بما يعزز الامتثال الضريبي ويرفع كفاءة الفريق في التعامل مع المتطلبات النظامية.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -2204,7 +2528,8 @@
         </div>
         <div>
           <h4>روابط سريعة</h4>
-          <div class="footer-links"><a href="#about">من نحن</a><a href="#services">الخدمات</a><a href="#vision">الرؤية والرسالة</a><a href="#founder-page">كلمة المؤسس</a></div>
+          <div class="footer-links"><a href="#about">من نحن</a><a href="#services">الخدمات</a><a href="#vision">الرؤية والرسالة</a><a href="#founder-page">كلمة المؤسس</a>
+        <a href="#achievements-page">الإنجازات</a></div>
         </div>
         <div>
           <h4>الخدمات</h4>
@@ -2228,7 +2553,18 @@
 
     const homePage = document.querySelector('main');
     const founderPage = document.getElementById('founder-page');
+    const achievementsPage = document.getElementById('achievements-page');
     const defaultTitle = document.title;
+
+    const achievementCards = Array.from(document.querySelectorAll('.achievement-item'));
+
+    const animateAchievements = () => {
+      achievementCards.forEach(card => card.classList.remove('is-visible'));
+      if (window.location.hash !== '#achievements-page') return;
+      achievementCards.forEach((card, index) => {
+        setTimeout(() => card.classList.add('is-visible'), 90 * index + 80);
+      });
+    };
 
     const closeMobileMenu = () => {
       mobileMenu.classList.remove('open');
@@ -2237,21 +2573,35 @@
     };
 
     const syncPageView = () => {
-      const showingFounder = window.location.hash === '#founder-page';
+      const currentHash = window.location.hash;
+      const showingFounder = currentHash === '#founder-page';
+      const showingAchievements = currentHash === '#achievements-page';
+      const showingStandalonePage = showingFounder || showingAchievements;
 
-      homePage.hidden = showingFounder;
+      homePage.hidden = showingStandalonePage;
       founderPage.hidden = !showingFounder;
+      achievementsPage.hidden = !showingAchievements;
       document.body.classList.toggle('founder-view', showingFounder);
-      document.title = showingFounder ? `كلمة المؤسس | ${defaultTitle}` : defaultTitle;
+      document.body.classList.toggle('achievements-view', showingAchievements);
+
+      if (showingFounder) {
+        document.title = `كلمة المؤسس | ${defaultTitle}`;
+      } else if (showingAchievements) {
+        document.title = `الإنجازات | ${defaultTitle}`;
+      } else {
+        document.title = defaultTitle;
+      }
+
+      animateAchievements();
       closeMobileMenu();
 
       requestAnimationFrame(() => {
-        if (showingFounder) {
+        if (showingStandalonePage) {
           window.scrollTo({ top: 0, behavior: 'auto' });
           return;
         }
 
-        const targetId = window.location.hash.slice(1);
+        const targetId = currentHash.slice(1);
         const target = targetId ? document.getElementById(targetId) : document.getElementById('home');
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
